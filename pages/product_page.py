@@ -7,10 +7,13 @@ class ProductPage(BasePage):
         add_to_cart_button = self.browser.find_element(*ProductPageLocators.ADD_TO_CART_BUTTON)
         add_to_cart_button.click()
 
-    def get_product_info(self):
+    def get_product_name(self):
         name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+        return name
+
+    def get_product_price(self):
         price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
-        return name, price
+        return price
 
     def should_be_added_to_cart(self, name, price):
         self.should_contain_product_name(name)
