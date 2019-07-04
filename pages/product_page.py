@@ -20,9 +20,13 @@ class ProductPage(BasePage):
         self.should_contain_product_price(price)
 
     def should_contain_product_name(self, name):
-        assert name == self.browser.find_element(
-            *ProductPageLocators.MESSAGE_WITH_PRODUCT_NAME).text, "Product name is incorrect in message"
+        message_name = self.browser.find_element(
+            *ProductPageLocators.MESSAGE_WITH_PRODUCT_NAME).text
+        assert name == message_name, "Product name is incorrect in message.\nExpected to find '{}', but found '{}'".format(
+            name, message_name)
 
     def should_contain_product_price(self, price):
-        assert price == self.browser.find_element(
-            *ProductPageLocators.MESSAGE_WITH_PRODUCT_PRICE).text, "Product price is incorrect in message"
+        message_price = self.browser.find_element(
+            *ProductPageLocators.MESSAGE_WITH_PRODUCT_PRICE).text
+        assert price == message_price, "Product price is incorrect in message.\nExpected to find {}, but found{}".format(
+            price, message_price)
