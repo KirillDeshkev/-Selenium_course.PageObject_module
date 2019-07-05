@@ -16,8 +16,12 @@ class ProductPage(BasePage):
         return price
 
     def should_be_added_to_cart(self, name, price):
+        self.should_be_success_message()
         self.should_contain_product_name(name)
         self.should_contain_product_price(price)
+
+    def should_be_success_message(self):
+        assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "There is no success message"
 
     def should_contain_product_name(self, name):
         message_name = self.browser.find_element(
@@ -36,5 +40,5 @@ class ProductPage(BasePage):
             "Success message is presented, but should not be"
 
     def should_disappear_from_page(self):
-        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+        assert self.is_element_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is still presented, but should be hidden"
