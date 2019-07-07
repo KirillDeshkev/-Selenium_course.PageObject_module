@@ -15,6 +15,10 @@ class BasePage(object):
         self.url = url
         self.browser.implicitly_wait(timeout)
 
+    def go_to_cart_page(self):
+        cart_link = self.browser.find_element(*BasePageLocators.CART_LINK)
+        cart_link.click()
+
     def go_to_login_page(self):
         login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         login_link.click()
